@@ -64,7 +64,7 @@ public class AddTaskFragment extends Fragment {
                     return;
                 }
 
-
+                Task task = new Task(title, des, start, end);
             }
         });
     }
