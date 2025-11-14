@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "934800574319",
+    "project_id": "addfragment123",
+    "storage_bucket": "addfragment123.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:934800574319:android:af0a593ad7dbb626f1ca9a",
+        "android_client_info": {
+          "package_name": "com.example.addfragment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr6qWgcUAQMCd-fLQ91KO4_-e8IlAZfr8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
