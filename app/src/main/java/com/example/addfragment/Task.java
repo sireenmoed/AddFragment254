@@ -6,9 +6,6 @@ public class Task {
     private String start;
     private String end;
 
-    public Task() {
-    }
-
     @Override
     public String toString() {
         return "Task{" +
