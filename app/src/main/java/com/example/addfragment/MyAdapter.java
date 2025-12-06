@@ -7,9 +7,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+import java.util.ArrayList;
 
-        private String[] mDataset;
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+
+        private ArrayList<Task> mDataset;
 
         public static class MyViewHolder  extends RecyclerView.ViewHolder {
 
@@ -23,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
         }
-        public MyAdapter(String[] myDataset){
+        public MyAdapter(ArrayList<Task> myDataset){
             mDataset = myDataset;
         }
 
@@ -34,11 +36,13 @@ import androidx.recyclerview.widget.RecyclerView;
         }
 
         public void onBindViewHolder(MyViewHolder holder, int position){
-            holder..setText(mDataset[position]);
+            holder.tvSubject.setText(mDataset.get(position).getTitle());
+            holder.tvStarTime.setText(mDataset.get(position).getStart());
+            holder.tvDuration.setText(mDataset.get(position).get());
         }
 
         public int getItemCount(){
-            return mDataset.length;
+            return mDataset.size();
         }
     }
 
