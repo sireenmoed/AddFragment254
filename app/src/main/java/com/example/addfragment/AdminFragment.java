@@ -3,6 +3,7 @@ package com.example.addfragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,10 +33,19 @@ public class AdminFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // TODO: goto add fragment
+                gotoAddTaskFragment();
             }
         });
 
     }
+
+    private void gotoAddTaskFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main, new AddTaskFragment());
+        ft.commit();
+    }
+
+
 
 
 

@@ -5,6 +5,7 @@ public class Task {
     private String des;
     private String start;
     private String end;
+    private String dur;
 
     @Override
     public String toString() {
@@ -13,8 +14,16 @@ public class Task {
                 ", title='" + title + '\'' +
                 ", start='" + start + '\'' +
                 ", end='" + end + '\'' +
-                '}'
-                ;
+                ", dur='" + dur + '\'' +
+                '}';
+    }
+
+    public String getDur() {
+        return dur;
+    }
+
+    public void setDur(String dur) {
+        this.dur = dur;
     }
 
     public String getDes() {
@@ -49,10 +58,11 @@ public class Task {
         this.title = title;
     }
 
-    public Task(String title, String des,String start,String end) {
+    public Task(String title, String des,String start,String end, String dur) {
         this.title = title;
         this.des = des;
         this.start = start;
         this.end = end;
+        this.dur = dur;
     }
 }

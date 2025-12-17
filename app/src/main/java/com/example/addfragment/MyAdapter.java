@@ -38,7 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public void onBindViewHolder(MyViewHolder holder, int position){
             holder.tvSubject.setText(mDataset.get(position).getTitle());
             holder.tvStarTime.setText(mDataset.get(position).getStart());
-            holder.tvDuration.setText(mDataset.get(position).get());
+            holder.tvDuration.setText(mDataset.get(position).getDur());
         }
 
         public int getItemCount(){

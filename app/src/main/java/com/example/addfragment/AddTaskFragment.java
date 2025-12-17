@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,30 +17,12 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddTaskFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class AddTaskFragment extends Fragment {
 
-    private EditText etTitle, etDes, etStart, etEnd;
+    private EditText etTitle, etDes, etStart, etEnd, etDuration;
     private Button btnAdd;
     private FirebaseServices fbs;
-
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public AddTaskFragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public void onStart() {
@@ -52,66 +35,48 @@ public class AddTaskFragment extends Fragment {
         etDes = getActivity().findViewById(R.id.etDesTask);
         etStart = getActivity().findViewById(R.id.etStartTask);
         etEnd = getActivity().findViewById(R.id.etEndTask);
+        etDuration = getActivity().findViewById(R.id.etDuration);
         btnAdd = getActivity().findViewById(R.id.btnAddAddTask);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title, des, start, end;
+                String title, des, start, end, dur;
                 title = etTitle.getText().toString();
                 des = etDes.getText().toString();
                 start = etStart.getText().toString();
                 end = etEnd.getText().toString();
+                dur = etDuration.getText().toString();
 
 
                 if (title.trim().isEmpty() || des.trim().isEmpty() || start.trim().isEmpty()
-                        || end.trim().isEmpty()) {
+                        || end.trim().isEmpty() || dur.trim().isEmpty()) {
                     Toast.makeText(getActivity(), "some fields are empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                Task task = new Task(title, des, start, end);
+
+                Task task = new Task(title, des, start, end, dur);
 
                 // TODO: add to firebase firestore
                 fbs.getFire().collection("tasks").add(task).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        // TODO: where to go: for example goto all fragment
+                        gotoAllTasksFragment();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         // TODO: toast message
+                        Toast.makeText(getActivity(),"failed to add task", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment addTaskFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddTaskFragment newInstance(String param1, String param2) {
-        AddTaskFragment fragment = new AddTaskFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -119,5 +84,12 @@ public class AddTaskFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_task, container, false);
+    }
+
+    private void gotoAllTasksFragment() {
+        FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main,new AllTaskFragment());
+        ft.commit();
+
     }
 }

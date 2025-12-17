@@ -37,4 +37,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // TODO: goto admin
+
+    private void gotoAdminFragment(){
+        FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main,new AdminFragment());
+        ft.commit();
+    }
 }
