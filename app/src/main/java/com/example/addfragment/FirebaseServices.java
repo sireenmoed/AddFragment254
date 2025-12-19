@@ -11,48 +11,21 @@ import com.google.firebase.storage.FirebaseStorage;
         private FirebaseStorage storage;
 
         public FirebaseServices() {
-        }
-
-        public FirebaseServices(FirebaseAuth auth, FirebaseServices instance, FirebaseFirestore fire,
-                                FirebaseStorage storage) {
-            this.auth = auth;
-            this.instance = instance;
-            this.fire = fire;
-            this.storage = storage;
-
-        }
-
-        @Override
-        public String toString() {
-            return "FirebaseServices{" +
-                    "auth=" + auth +
-                    ", fire=" + fire +
-                    ", storage=" + storage +
-                    '}';
+            this.auth = FirebaseAuth.getInstance();
+            this.fire =  FirebaseFirestore.getInstance();
+            this.storage = FirebaseStorage.getInstance();
         }
 
         public FirebaseStorage getStorage() {
             return storage;
         }
 
-        public void setStorage(FirebaseStorage storage) {
-            this.storage = storage;
-        }
-
         public FirebaseFirestore getFire() {
             return fire;
         }
 
-        public void setFire(FirebaseFirestore fire) {
-            this.fire = fire;
-        }
-
         public FirebaseAuth getAuth() {
             return auth;
-        }
-
-        public void setAuth(FirebaseAuth auth) {
-            this.auth = auth;
         }
 
         public static FirebaseServices getInstance(){
@@ -61,7 +34,4 @@ import com.google.firebase.storage.FirebaseStorage;
             return instance;
         }
 
-        public static void setInstance(FirebaseServices instance) {
-            FirebaseServices.instance = instance;
-        }
     }

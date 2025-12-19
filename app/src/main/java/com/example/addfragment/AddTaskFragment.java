@@ -31,6 +31,7 @@ public class AddTaskFragment extends Fragment {
     }
 
     private void connectComponets() {
+        fbs = FirebaseServices.getInstance();
         etTitle = getActivity().findViewById(R.id.etTitleTask);
         etDes = getActivity().findViewById(R.id.etDesTask);
         etStart = getActivity().findViewById(R.id.etStartTask);

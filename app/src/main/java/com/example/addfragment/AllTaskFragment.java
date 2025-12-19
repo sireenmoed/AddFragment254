@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class AllTaskFragment extends Fragment {
 
     private RecyclerView rvAllTask;
-
+    FirebaseServices fbs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,8 +36,16 @@ public class AllTaskFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_all_task, container, false);
     }
 
-    FirebaseServices fbs;
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        rvAllTask = getActivity().findViewById(R.id.rvAllTasks);
+        // TODO: fbs definition
+        fbs = FirebaseServices.getInstance();
+        // TODO: call getTasks()
+        getTasks();
+    }
 
     public ArrayList<Task> getTasks() {
         ArrayList<Task> tasks = new ArrayList<>();
