@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,12 +83,13 @@ public class TaskLoginFragment extends Fragment {
                 fbs.getAuth().signInWithEmailAndPassword(username, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-
+                        gotoAdminFragment();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
+                        Log.e("Login", e.getMessage());
+                        Toast.makeText(getActivity(), "failed to login!", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -95,5 +97,11 @@ public class TaskLoginFragment extends Fragment {
             }
 
         });
+    }
+
+    private void gotoAdminFragment(){
+        FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main,new AdminFragment());
+        ft.commit();
     }
 }

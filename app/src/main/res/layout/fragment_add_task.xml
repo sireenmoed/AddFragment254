@@ -84,6 +84,7 @@
             android:ems="10"
             android:hint="Duration..."
             android:inputType="text"
+            android:minHeight="48dp"
             app:layout_constraintBottom_toTopOf="@+id/btnAddAddTask"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/etEndTask"

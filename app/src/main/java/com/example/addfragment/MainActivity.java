@@ -11,6 +11,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FirebaseServices fbs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +28,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        gotoAddTaskFragment();
+        fbs = FirebaseServices.getInstance();
+        if (fbs.getAuth().getCurrentUser() != null)
+            gotoAdminFragment();
+        else
+            gotoTaskLoginFragment();
     }
 
     private void gotoAddTaskFragment() {
@@ -42,5 +48,12 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.main,new AdminFragment());
         ft.commit();
+    }
+
+    private void gotoTaskLoginFragment() {
+        FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main,new TaskLoginFragment());
+        ft.commit();
+
     }
 }

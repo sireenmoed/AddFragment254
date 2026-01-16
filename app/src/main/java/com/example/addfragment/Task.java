@@ -7,15 +7,15 @@ public class Task {
     private String end;
     private String dur;
 
-    @Override
-    public String toString() {
-        return "Task{" +
-                "des='" + des + '\'' +
-                ", title='" + title + '\'' +
-                ", start='" + start + '\'' +
-                ", end='" + end + '\'' +
-                ", dur='" + dur + '\'' +
-                '}';
+    public Task() {
+    }
+
+    public Task(String title, String des,String start,String end, String dur) {
+        this.title = title;
+        this.des = des;
+        this.start = start;
+        this.end = end;
+        this.dur = dur;
     }
 
     public String getDur() {
@@ -58,11 +58,14 @@ public class Task {
         this.title = title;
     }
 
-    public Task(String title, String des,String start,String end, String dur) {
-        this.title = title;
-        this.des = des;
-        this.start = start;
-        this.end = end;
-        this.dur = dur;
+    @Override
+    public String toString() {
+        return "Task{" +
+                "des='" + des + '\'' +
+                ", title='" + title + '\'' +
+                ", start='" + start + '\'' +
+                ", end='" + end + '\'' +
+                ", dur='" + dur + '\'' +
+                '}';
     }
 }

@@ -34,6 +34,7 @@ public class AdminFragment extends Fragment {
             public void onClick(View view) {
                 // TODO: goto add fragment
                 gotoAddTaskFragment();
+                gotoAllTaskFragment();
             }
         });
 
@@ -42,6 +43,12 @@ public class AdminFragment extends Fragment {
     private void gotoAddTaskFragment() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.main, new AddTaskFragment());
+        ft.commit();
+    }
+
+    private void gotoAllTaskFragment() {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main, new AllTaskFragment());
         ft.commit();
     }
 
