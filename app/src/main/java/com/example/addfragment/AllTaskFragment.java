@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.RecoverySystem;
@@ -41,6 +42,8 @@ public class AllTaskFragment extends Fragment {
     public void onStart() {
         super.onStart();
         rvAllTask = getActivity().findViewById(R.id.rvAllTasks);
+        rvAllTask.setHasFixedSize(true);
+        rvAllTask.setLayoutManager(new LinearLayoutManager(getActivity()));
         // TODO: fbs definition
         fbs = FirebaseServices.getInstance();
         // TODO: call getTasks()

@@ -18,7 +18,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             public TextView tvSubject, tvStarTime, tvDuration;
             public MyViewHolder(View v){
                 super(v);
-                tvSubject = v.findViewById(R.id.tvSubject);
+                tvSubject = v.findViewById(R.id.tvSubjectTaskRow);
                 tvStarTime = v.findViewById(R.id.tvStarTime);
                 tvDuration = v.findViewById(R.id.tvDuration);
             }

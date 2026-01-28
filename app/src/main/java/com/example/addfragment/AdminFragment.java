@@ -13,7 +13,8 @@ import android.widget.Button;
 
 public class AdminFragment extends Fragment {
 
-    private Button btnAllFragment, btnAddFragment;
+    private Button btnAllFragment, btnAddFragment, btnLogout;
+    private FirebaseServices fbs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class AdminFragment extends Fragment {
     }
 
     private void init() {
+        btnLogout = getActivity().findViewById(R.id.btnLogoutAdmin);
         btnAddFragment = getActivity().findViewById(R.id.btnAddFragment);
         btnAllFragment = getActivity().findViewById(R.id.btnAllFragment);
         btnAddFragment.setOnClickListener(new View.OnClickListener() {
@@ -34,9 +36,25 @@ public class AdminFragment extends Fragment {
             public void onClick(View view) {
                 // TODO: goto add fragment
                 gotoAddTaskFragment();
+            }
+        });
+        btnAllFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO: goto all fragment
                 gotoAllTaskFragment();
             }
         });
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fbs.getAuth().signOut();
+                gotoAddTaskFragment();
+            }
+        });
+
+
 
     }
 

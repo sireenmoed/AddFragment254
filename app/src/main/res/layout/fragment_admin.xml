@@ -14,12 +14,12 @@
             android:id="@+id/btnAddFragment"
             android:layout_width="100dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="270dp"
+            android:layout_marginBottom="133dp"
             android:text="AddFragment"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btnLogoutAdmin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/btnAllFragment"
             tools:ignore="MissingConstraints,UnknownId" />
 
         <Button
@@ -34,5 +34,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/btnLogoutAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="109dp"
+            android:layout_marginBottom="88dp"
+            android:text="Button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddFragment" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
