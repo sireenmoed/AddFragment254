@@ -1,28 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#66CC8A"
+    android:padding="12dp"
+    android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/tvSubjectTaskRow"
-        android:layout_width="wrap_content"
+    <!-- الجزء الأيسر (النصوص) -->
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="TextView" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvStarTime"
-        android:layout_width="69dp"
-        android:layout_height="493dp"
-        android:layout_marginStart="4dp" />
+        <TextView
+            android:id="@+id/tvSubjectTaskRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mathematics"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
 
-    <TextView
-        android:id="@+id/tvDuration"
-        android:layout_width="78dp"
-        android:layout_height="170dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="92dp" />
+        <TextView
+            android:id="@+id/tvStarTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9:00AM 1 hour"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/tvDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <!-- الدائرة على اليمين -->
+    <RadioButton
+        android:id="@+id/rbSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
