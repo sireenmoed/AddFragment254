@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -22,6 +23,7 @@ public class AddTaskFragment extends Fragment {
 
     private EditText etTitle, etDes, etStart, etEnd, etDuration;
     private Button btnAdd;
+    private Spinner spColor;
     private FirebaseServices fbs;
 
     @Override
@@ -32,6 +34,7 @@ public class AddTaskFragment extends Fragment {
 
     private void connectComponets() {
         fbs = FirebaseServices.getInstance();
+        spColor = getActivity().findViewById(R.id.spColor);
         etTitle = getActivity().findViewById(R.id.etTitleTask);
         etDes = getActivity().findViewById(R.id.etDesTask);
         etStart = getActivity().findViewById(R.id.etStartTask);
@@ -41,22 +44,23 @@ public class AddTaskFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title, des, start, end, dur;
+                String title, des, start, end, dur, color;
                 title = etTitle.getText().toString();
                 des = etDes.getText().toString();
                 start = etStart.getText().toString();
                 end = etEnd.getText().toString();
                 dur = etDuration.getText().toString();
+                color = spColor.getText().toString();
 
 
                 if (title.trim().isEmpty() || des.trim().isEmpty() || start.trim().isEmpty()
-                        || end.trim().isEmpty() || dur.trim().isEmpty()) {
+                        || end.trim().isEmpty() || dur.trim().isEmpty() || color.trim().isEmpty()) {
                     Toast.makeText(getActivity(), "some fields are empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
 
-                Task task = new Task(title, des, start, end, dur);
+                Task task = new Task(title, des, start, end, dur, color);
 
                 // TODO: add to firebase firestore
                 fbs.getFire().collection("tasks").add(task).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
