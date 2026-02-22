@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -26,6 +27,9 @@ public class AddTaskFragment extends Fragment {
     private Spinner spColor;
     private FirebaseServices fbs;
 
+    String[] Colors={"select Color of task","blue","yellow",
+            "green","red","purple"," Other..."};
+
     @Override
     public void onStart() {
         super.onStart();
@@ -41,6 +45,11 @@ public class AddTaskFragment extends Fragment {
         etEnd = getActivity().findViewById(R.id.etEndTask);
         etDuration = getActivity().findViewById(R.id.etDuration);
         btnAdd = getActivity().findViewById(R.id.btnAddAddTask);
+
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(), R.layout.item_file,Colors);
+        adapter.setDropDownViewResource(R.layout.item_file);
+        spColor.setAdapter(adapter);
+
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,15 +59,13 @@ public class AddTaskFragment extends Fragment {
                 start = etStart.getText().toString();
                 end = etEnd.getText().toString();
                 dur = etDuration.getText().toString();
-                color = spColor.getText().toString();
-
+                color = spColor.getSelectedItem().toString();
 
                 if (title.trim().isEmpty() || des.trim().isEmpty() || start.trim().isEmpty()
                         || end.trim().isEmpty() || dur.trim().isEmpty() || color.trim().isEmpty()) {
                     Toast.makeText(getActivity(), "some fields are empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
 
                 Task task = new Task(title, des, start, end, dur, color);
 
