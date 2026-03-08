@@ -1,8 +1,19 @@
 package com.example.addfragment;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.Spinner;
 
-public class Task {
+import androidx.annotation.NonNull;
+
+
+/*
+* Parcel
+* Onclick for task in all fragment
+* */
+
+
+public class Task implements Parcelable {
     private String title;
     private String des;
     private String start;
@@ -22,6 +33,27 @@ public class Task {
         this.dur = dur;
         this.color = color;
     }
+
+    protected Task(Parcel in) {
+        title = in.readString();
+        des = in.readString();
+        start = in.readString();
+        end = in.readString();
+        dur = in.readString();
+        color = in.readString();
+    }
+
+    public static final Creator<Task> CREATOR = new Creator<Task>() {
+        @Override
+        public Task createFromParcel(Parcel in) {
+            return new Task(in);
+        }
+
+        @Override
+        public Task[] newArray(int size) {
+            return new Task[size];
+        }
+    };
 
     public String getColor() {
         return color;
@@ -81,6 +113,22 @@ public class Task {
                 ", dur='" + dur + '\'' +
                 ", color='" + color + '\'' +
                 '}';
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(des);
+        dest.writeString(start);
+        dest.writeString(end);
+        dest.writeString(dur);
+        dest.writeString(color);
     }
 }
 

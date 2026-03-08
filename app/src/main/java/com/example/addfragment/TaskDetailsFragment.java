@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +25,10 @@ public class TaskDetailsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private FirebaseServices fbs;
+
+    private EditText etSubTitle, etSubStartTime, etSubEndTime;
+    private TextView tv1, tv2, tv3;
 
     public TaskDetailsFragment() {
         // Required empty public constructor
@@ -61,4 +67,16 @@ public class TaskDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_task_details, container, false);
     }
+
+    public void init(){
+
+        fbs= FirebaseServices.getInstance();
+        tv1=getView().findViewById(R.id.tv1);
+        tv2=getView().findViewById(R.id.tv2);
+        tv3=getView().findViewById(R.id.tv3);
+        etSubTitle=getActivity().findViewById(R.id.etSubTitle);
+        etSubStartTime=getActivity().findViewById(R.id.etSubStartTime);
+        etSubEndTime=getActivity().findViewById(R.id.etSubEndTime);
+    }
+
 }
