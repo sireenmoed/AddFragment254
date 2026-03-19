@@ -130,6 +130,8 @@ public class Task implements Parcelable {
         dest.writeString(dur);
         dest.writeString(color);
     }
+
+
 }
 
 

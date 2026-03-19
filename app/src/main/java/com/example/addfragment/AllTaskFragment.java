@@ -65,7 +65,7 @@ public class AllTaskFragment extends Fragment {
                                     tasks.add(document.toObject(Task.class));
                                 }
 
-                                MyAdapter adapter = new MyAdapter(tasks);
+                                MyAdapter adapter = new MyAdapter(getContext(), tasks);
                                 rvAllTask.setAdapter(adapter);
                                 //addUserToCompany(companies, user);
                             } else {

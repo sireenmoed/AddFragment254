@@ -1,7 +1,10 @@
 package com.example.addfragment;
 
+import android.annotation.SuppressLint;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.FirebaseStorage;
 
     public class FirebaseServices {
@@ -9,6 +12,11 @@ import com.google.firebase.storage.FirebaseStorage;
         private FirebaseAuth auth;
         private FirebaseFirestore fire;
         private FirebaseStorage storage;
+
+
+
+
+
 
         public FirebaseServices() {
             this.auth = FirebaseAuth.getInstance();
@@ -34,4 +42,9 @@ import com.google.firebase.storage.FirebaseStorage;
             return instance;
         }
 
+
+        @SuppressLint("RestrictedApi")
+        public User getCurrentUser() {
+            return null;
+        }
     }
