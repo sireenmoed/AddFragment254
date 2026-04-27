@@ -22,12 +22,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         private ArrayList<Task> mDataset;
         private Context context;
         private FirebaseServices fbs;
-    private AdapterView.OnItemClickListener itemClickListener;
+        private AdapterView.OnItemClickListener itemClickListener;
 
 
         public static class MyViewHolder  extends RecyclerView.ViewHolder {
 
-            public TextView tvSubject, tvStarTime, tvDuration;
+            public TextView tvSubject, tvStarTime, tvDuration, tvEndTime;
             public MyViewHolder(View v){
                 super(v);
                 tvSubject = v.findViewById(R.id.tvSubjectTaskRow);
@@ -47,32 +47,29 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             return new MyViewHolder(v);
         }
 
-        public void onBindViewHolder(MyViewHolder holder, int position){
-            holder.tvSubject.setText(mDataset.get(position).getTitle());
-            holder.tvStarTime.setText(mDataset.get(position).getStart());
-            holder.tvDuration.setText(mDataset.get(position).getDur());
-        }
-
         public int getItemCount() {
             return mDataset.size();
         }
 
-    public MyAdapter(Context context, ArrayList<Task> mDataset) {
-        this.context = context;
-        this.mDataset = mDataset;
-        this.fbs = FirebaseServices.getInstance();
-        this.itemClickListener = new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        public MyAdapter(Context context, ArrayList<Task> mDataset) {
+            this.context = context;
+            this.mDataset = mDataset;
+            this.fbs = FirebaseServices.getInstance();
+            this.itemClickListener = new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Bundle args = new Bundle();
-                args.putParcelable("task", mDataset.get(position)); // or use Parcelable for better performance
-                TaskDetailsFragment cd = new TaskDetailsFragment();
-                cd.setArguments(args);
-                FragmentTransaction ft= ((MainActivity)context).getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.main,cd);
-                ft.commit();
-            }
+                    Bundle args = new Bundle();
+                    args.putParcelable("task", mDataset.get(position)); // or use Parcelable for better performance
+                    TaskDetailsFragment cd = new TaskDetailsFragment();
+                    cd.setArguments(args);
+                    FragmentTransaction ft = ((MainActivity) context).getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.main, cd);
+                    ft.commit();
+                }
+            };
+        }
+
             public void onBindViewHolder(MyAdapter.MyViewHolder holder, int position){
 
                 Task task= mDataset.get(position);
@@ -80,16 +77,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
                 holder.tvSubject.setText(task.getTitle());
                 holder.tvStarTime.setText(task.getStart());
-                holder.tvEndTime.setText(task.getEnd());
+                /*
                 holder.tvSubject.setOnClickListener(v -> {
                     if (itemClickListener != null) {
                         itemClickListener.onItemClick(position);
                     }
                 });
+*/
+        }
 
 
-        } ;
-
-
-    };
-    }}
+    }
